@@ -250,7 +250,7 @@ const Home: React.FC = () => {
                   </div>
                 </Header>
               <Layout.Content style={{overflowY: 'scroll'}}>
-                {currentContent === '/trangchu' && <HomeContent themeClassName={themeClassName}/>}
+                {currentContent === '/trangchu' && <HomeContent onClick={handleMenuClick} themeClassName={themeClassName}/>}
                 {currentContent === '/chatGPT' && <ChatGPT themeClassName={themeClassName}/>}
                 {currentContent === '/bantin' && <Bulletin themeClassName={themeClassName}/>}
                 {currentContent === '/thongke' && <StructureFile/>}

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
 import { Button, Flex } from 'antd';
 import './HomeContent.css'
 import { UserOutlined, AreaChartOutlined, PictureOutlined, FileExcelOutlined, TeamOutlined, MessageOutlined, FolderViewOutlined} from '@ant-design/icons'
 
 interface ChatGPTProps {
   themeClassName: string;
+  onClick: (key: string) => void;
 }
 
-const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
+const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName, onClick }) => {
   let buttonType: "default" | "primary" = "primary";
 
   const [sizeChar, setSizeChar] = useState({ sizeHeader: 0, sizeWord: 0, sizeImage: 0, sizeMargin: 0, sizeButton:0, gap: ""});
@@ -39,21 +39,12 @@ const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
   } else if (themeClassName === "light-theme") {
     buttonType = "default";
   }
-  
-  const navigate = useNavigate()
-
-  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const buttonKey = e.currentTarget.getAttribute('data-key');
-    // console.log('Button key:', buttonKey);
-    // window.location.href = buttonKey || '';
-    navigate(`${buttonKey}`)
-  };
 
   let role = localStorage.getItem('role')
 
   return (
         <Flex gap={sizeChar.gap} vertical justify='center' align='center' style={{height:'100%'}}>
-          <Button type={buttonType} block size={'large'} onClick={handleButtonClick} data-key="/bantin" style={{width:sizeChar.sizeButton}}>
+          <Button type={buttonType} block size={'large'} onClick={() => {onClick("/bantin")} } style={{width:sizeChar.sizeButton}}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <FileExcelOutlined style={{ marginRight: sizeChar.sizeMargin, transform: `scale(${sizeChar.sizeImage})` }} />
               <div>
@@ -62,7 +53,7 @@ const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
             </div>
           </Button>
 
-          <Button type={buttonType} block size={'large'} onClick={handleButtonClick} data-key="/thongke" style={{width:sizeChar.sizeButton}}> 
+          <Button type={buttonType} block size={'large'} onClick={() => {onClick("/thongke")} } style={{width:sizeChar.sizeButton}}> 
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <AreaChartOutlined style={{ marginRight: sizeChar.sizeMargin, transform: `scale(${sizeChar.sizeImage})` }} />
               <div>
@@ -71,7 +62,7 @@ const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
             </div>
           </Button>
 
-          <Button type={buttonType} block size={'large'} onClick={handleButtonClick} data-key="/hinhanh" style={{width:sizeChar.sizeButton}}> 
+          <Button type={buttonType} block size={'large'} onClick={() => {onClick("/hinhanh")} }  style={{width:sizeChar.sizeButton}}> 
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <PictureOutlined style={{ marginRight: sizeChar.sizeMargin, transform: `scale(${sizeChar.sizeImage})` }} />
               <div>
@@ -80,7 +71,7 @@ const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
             </div>
           </Button>
 
-          <Button type={buttonType} block size={'large'} onClick={handleButtonClick} data-key="/chatGPT" style={{width:sizeChar.sizeButton}}>
+          <Button type={buttonType} block size={'large'} onClick={() => {onClick("/chatGPT")} }  style={{width:sizeChar.sizeButton}}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <MessageOutlined style={{ marginRight: sizeChar.sizeMargin, transform: `scale(${sizeChar.sizeImage})` }} />
               <div>
@@ -89,7 +80,7 @@ const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
             </div>
           </Button>
 
-          <Button type={buttonType} block size={'large'} onClick={handleButtonClick} data-key="/baocaogiaothong" style={{width:sizeChar.sizeButton}}>
+          <Button type={buttonType} block size={'large'} onClick={() => {onClick("/baocaogiaothong")} }   style={{width:sizeChar.sizeButton}}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <FolderViewOutlined style={{ marginRight: sizeChar.sizeMargin, transform: `scale(${sizeChar.sizeImage})` }} />
               <div>
@@ -102,7 +93,7 @@ const HomeContent: React.FC<ChatGPTProps> = ({ themeClassName }) => {
           role == 'ROLE_ADMIN'?
           <div style = {{display: 'flex', flexDirection: 'column'}}>
             <div style={{ fontSize: sizeChar.sizeHeader, textAlign: 'center'}}>- Dữ liệu admin -</div>
-            <Button type={buttonType} block size={'large'} onClick={handleButtonClick} data-key="/dulieuadmin" style={{width:sizeChar.sizeButton, margin: 8}}> 
+            <Button type={buttonType} block size={'large'} onClick={() => {onClick("/dulieuadmin")} }  style={{width:sizeChar.sizeButton, margin: 8}}> 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <TeamOutlined style={{ marginRight: sizeChar.sizeMargin, transform: `scale(${sizeChar.sizeImage})` }} />
                 <div>  
